@@ -418,8 +418,10 @@ function loadAndRenderTree() {
       tree = enrichDirTree(tree);
       renderTreeHTML(tree, ul);
       root.appendChild(ul);
-      if (typeof filepath !== "undefined" && filepath !== "") {
-        highlightCurrentFileInTree(filepath);
+      // Always highlight and scroll to the current file
+      const currentFile = getCurrentFilePath();
+      if (currentFile) {
+        highlightCurrentFileInTree(currentFile);
       }
     });
 }
