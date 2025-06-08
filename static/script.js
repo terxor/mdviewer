@@ -255,17 +255,16 @@ const fetchContent = (fp, highlightWord, lineno, contextBlock) => {
         });
       }
 
-      if (enable_math) {
-        renderMathInElement(viewer, {
-          delimiters: [
-            { left: '$$', right: '$$', display: true },
-            { left: '\\[', right: '\\]', display: true },
-            { left: '$', right: '$', display: false },
-            { left: '\\(', right: '\\)', display: false }
-          ],
-          throwOnError: false
-        });
-      }
+      renderMathInElement(viewer, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '\\[', right: '\\]', display: true },
+          { left: '$', right: '$', display: false },
+          { left: '\\(', right: '\\)', display: false }
+        ],
+        throwOnError: false
+      });
+
       history.pushState({}, '', '/' + fp);
       document.title = fp;
       genCopyButtons();
@@ -425,6 +424,14 @@ function loadAndRenderTree() {
     });
 }
 
+// Utility: get current file path from URL
+function getCurrentFilePath() {
+  // Remove leading slash
+  let path = window.location.pathname;
+  if (path.startsWith('/')) path = path.slice(1);
+  return decodeURIComponent(path);
+}
+
 // Listen for scroll to highlight current TOC entry
 window.addEventListener('scroll', () => {
   highlightCurrentTOCOnScroll();
@@ -434,7 +441,16 @@ window.addEventListener('scroll', () => {
 document.addEventListener('DOMContentLoaded', () => {
   loadAndRenderTree();
   setupUnifiedSearch();
-  if (typeof filepath !== "undefined" && filepath !== "") {
-    fetchContent(filepath);
+  const currentFile = getCurrentFilePath();
+  if (currentFile) {
+    fetchContent(currentFile);
+  }
+});
+
+// Listen for browser navigation (back/forward)
+window.addEventListener('popstate', () => {
+  const currentFile = getCurrentFilePath();
+  if (currentFile) {
+    fetchContent(currentFile);
   }
 });

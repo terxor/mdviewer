@@ -22,9 +22,8 @@ def strip_self_links(html: str) -> str:
     )
 
 class MarkdownViewer:
-    def __init__(self, root_dir, enable_math=False, debug=False):
+    def __init__(self, root_dir, debug=False):
         self.root_dir = os.path.abspath(root_dir)
-        self.enable_math = enable_math
         self.debug = debug
         self.app = Flask(__name__)
         self.fuzzy_search = FuzzySearch()
@@ -73,8 +72,7 @@ class MarkdownViewer:
         @self.app.route('/', defaults={'filepath': ''})
         @self.app.route('/<path:filepath>')
         def index(filepath):
-            tree = self.build_tree(self.root_dir)
-            return render_template('index.html', tree=tree, filepath=filepath, enable_math=self.enable_math)
+            return render_template('index.html')
 
         @self.app.route('/content')
         def view_file():
@@ -86,8 +84,7 @@ class MarkdownViewer:
                 abort(403)
             with open(abs_path, 'r', encoding='utf-8') as f:
                 content = f.read()
-            if self.enable_math:
-                content = self.clean_math(content)
+            content = self.clean_math(content)
             html = markdown2.markdown(content, extras=[
                 "fenced-code-blocks",
                 "code-friendly",
@@ -125,13 +122,12 @@ class MarkdownViewer:
         self.app.run(debug=self.debug)
 
 def main():
-    parser = argparse.ArgumentParser(description="Markdown viewer with optional math rendering")
+    parser = argparse.ArgumentParser(description="Markdown viewer")
     parser.add_argument("directory", help="Directory to serve")
-    parser.add_argument("--math", action="store_true", help="Enable MathJax for LaTeX-style math")
     parser.add_argument("--debug", action="store_true", help="Enable debug mode")
     args = parser.parse_args()
 
-    viewer = MarkdownViewer(root_dir=args.directory, enable_math=args.math, debug=args.debug)
+    viewer = MarkdownViewer(root_dir=args.directory, debug=args.debug)
     viewer.run()
 
 if __name__ == '__main__':
