@@ -21,3 +21,5 @@ dev dependencies:
 - Fix tables: no wrapping and add horiz scroll
 - Fix search of terms with special symbols like 'vector<int>'
 - Fix performance/snappiness
+
+

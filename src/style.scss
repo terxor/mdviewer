@@ -99,6 +99,9 @@ $search-preview-file-color: #3572b0;
 $font-primary: 'Open Sans', sans-serif;
 $font-mono: 'JetBrains Mono', monospace;
 
+$link-color: #1976d2;
+$link-hover-color: #485fc7;
+
 
 html {
   scroll-behavior: smooth;
@@ -138,6 +141,20 @@ body {
   background: $main-bg;
   overflow: hidden;
   padding: 1rem;
+
+  &:first-child {
+    align-items: flex-start;
+  }
+
+  &:last-child {
+    align-items: flex-end;
+  }
+
+  .layout3col-sidebar-contents {
+    width: 100%;
+    max-width: 400px;
+  }
+
 }
 
 .layout3col-center {
@@ -311,6 +328,22 @@ body {
     color: #2e4d2e; // dark green text for better contrast
   }
 
+  a {
+    color: $link-color;
+    text-decoration: none;
+
+    &:visited,
+    &:active {
+      color: $link-color;
+      text-decoration: none;
+    }
+
+    &:hover,
+    &:focus {
+      color: $link-hover-color;
+      text-decoration: none;
+    }
+  }
 }
 
 #search-bar {
@@ -379,7 +412,7 @@ body {
     font-family: $font-mono;
     font-size: 1em;
     margin: 1px 0;
-    transition: background 0.15s, color 0.15s;
+    // transition: background 0.15s, color 0.15s;
     user-select: none;
     color: $tree-entry-color;
     text-decoration: none;
