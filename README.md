@@ -22,4 +22,5 @@ dev dependencies:
 - Fix search of terms with special symbols like 'vector<int>'
 - Fix performance/snappiness
 
-
+- Fix TOC scroll (auto-scroll conflict) in large docs
+  - Reproduce issue: click on last heading in large doc

@@ -110,6 +110,7 @@ def main():
 
     config = {"dir": args.dir}
     server = MdViewerServer((args.host, int(args.port)), MdViewerHandler, config)
+    logging.info(f"Config: {config}")
     logging.info(f"Serving on http://{args.host}:{args.port}/")
     server.serve_forever()
 

@@ -45,7 +45,7 @@ class MdViewerState:
         return tree
 
     def refresh(self):
-        logging.info(f"Refreshing internal cache from directory: {self._root_dir} (THIS IS COSTLY!)")
+        logging.info(f"(re)building cache from scratch")
         self._node_map = {}
         self._tree = self._build_dtree_cache(self._root_dir)
         self._fuzzy_search = FuzzySearch({name: node['contents'] for name, node in self._node_map.items()})
