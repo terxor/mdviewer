@@ -38,6 +38,7 @@ class MarkdownParser:
             "code-color",
             "tables",
             "cuddled-lists",
+            "target-blank-links"
         ])
         html = MarkdownParser._strip_self_links(html)
         return html
