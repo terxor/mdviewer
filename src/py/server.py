@@ -5,7 +5,7 @@ import argparse
 import json
 import logging
 from http.server import SimpleHTTPRequestHandler, HTTPServer
-from urllib.parse import urlparse, parse_qs
+from urllib.parse import unquote, urlparse, parse_qs
 from sv_state import MdViewerState
 
 logging.basicConfig(level=logging.INFO)
@@ -24,7 +24,7 @@ class MdViewerHandler(SimpleHTTPRequestHandler):
         parsed_url = urlparse(self.path)
         path = parsed_url.path
         query = parse_qs(parsed_url.query)
-        logging.info(f"GET: {path}, query: {query}")
+        logging.debug(f"GET: {path}, query: {query}")
 
         if path.startswith("/static/"):
             return self._serve_static(path)
@@ -49,6 +49,8 @@ class MdViewerHandler(SimpleHTTPRequestHandler):
         return self._send_error()
 
     def _serve_index(self):
+        # Refresh state on explicit page request, not on every GET
+        self.server.state.refresh()
         self.path = "/index.html"
         return super().do_GET()
 
@@ -62,7 +64,7 @@ class MdViewerHandler(SimpleHTTPRequestHandler):
         # Handles both /raw/ and /plain/
         prefix = "/raw/" if raw else "/plain/"
         name = path[len(prefix):]
-        self.server.state.refresh()
+        name = unquote(name)  # Decode URL-encoded characters
         try:
             content = self.server.state.get_content(name, raw=raw)
             if raw:
@@ -78,7 +80,10 @@ class MdViewerHandler(SimpleHTTPRequestHandler):
         self.send_header("Content-Type", content_type)
         self.send_header("Content-Length", str(len(content)))
         self.end_headers()
-        self.wfile.write(content)
+        try:
+            self.wfile.write(content)
+        except BrokenPipeError:
+            logging.warning("Client disconnected before response could complete")
 
     def _send_plaintext(self, content: str, code: int = 200):
         self._send_response(content.encode("utf-8"), "text/plain; charset=utf-8", code)
@@ -91,7 +96,10 @@ class MdViewerHandler(SimpleHTTPRequestHandler):
         self._send_response(content.encode("utf-8"), "text/html", code)
 
     def _send_error(self, code: int = 404, message: str = "Not found"):
-        self._send_plaintext(message, code)
+        if self.path.startswith("/api/"):
+            self._send_json({"error": message}, code)
+        else:
+            self._send_plaintext(message, code)
 
 def main():
     parser = argparse.ArgumentParser(description="Markdown viewer")

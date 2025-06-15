@@ -2,17 +2,8 @@ import re
 import os
 
 class FuzzySearch:
-    def __init__(self):
-        self.file_contents = {}
-
-    def index(self, pathmap):
-        self.file_contents = {}
-        for name, full_path in pathmap.items():
-            try:
-                with open(full_path, 'r', encoding='utf-8') as f:
-                    self.file_contents[name] = f.read()
-            except Exception:
-                self.file_contents[name] = ""
+    def __init__(self, file_contents):
+        self.file_contents = file_contents
 
     def search(self, query, limit=10):
         query = query.strip()
