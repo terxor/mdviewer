@@ -212,7 +212,8 @@ function generateTOC() {
 
   const headings = viewer.querySelectorAll('h1, h2, h3, h4, h5, h6');
   if (!headings.length) {
-    return;
+    tocContainer.innerHTML = '';
+    return
   }
   const tocTree = buildTOCTree(headings);
   const ul = document.createElement('ul');
@@ -239,7 +240,7 @@ const genCopyButtons = () => {
 
 // Fetch and display file content, now accepts contextBlock
 const fetchContent = (fp, highlightWord, lineno, contextBlock) => {
-  fetch('/content?file=' + encodeURIComponent(fp))
+  fetch('/plain/' + encodeURIComponent(fp))
     .then(res => res.text())
     .then(html => {
       console.time('renderMarkdown');
@@ -265,7 +266,7 @@ const fetchContent = (fp, highlightWord, lineno, contextBlock) => {
         throwOnError: false
       });
 
-      history.pushState({}, '', '/' + fp);
+      history.pushState({}, '', '/render/' + fp);
       document.title = fp;
       genCopyButtons();
       generateTOC();
@@ -353,7 +354,7 @@ function setupUnifiedSearch() {
           }
 
           // 2. Global content/context search
-          fetch(`/search?query=${encodeURIComponent(query)}`)
+          fetch(`/api/search?query=${encodeURIComponent(query)}`)
             .then(res => res.json())
             .then(globalResults => {
               if (globalResults.length === 0) {
@@ -426,11 +427,17 @@ function loadAndRenderTree() {
     });
 }
 
-// Utility: get current file path from URL
+// Utility: get current file path from /render/URL
 function getCurrentFilePath() {
-  // Remove leading slash
+  const prefix = '/render/';
   let path = window.location.pathname;
-  if (path.startsWith('/')) path = path.slice(1);
+
+  if (path.startsWith(prefix)) {
+    path = path.slice(prefix.length);
+  } else {
+    path = ''; // Or handle as error/empty
+  }
+
   return decodeURIComponent(path);
 }
 

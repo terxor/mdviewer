@@ -3,44 +3,16 @@ import os
 
 class FuzzySearch:
     def __init__(self):
-        self.file_index = []
         self.file_contents = {}
 
-    def index_directory(self, root_dir):
-        self.file_index = []
+    def index(self, pathmap):
         self.file_contents = {}
-        for dirpath, _, filenames in os.walk(root_dir):
-            for filename in filenames:
-                if filename.endswith('.md'):
-                    rel_path = os.path.relpath(os.path.join(dirpath, filename), root_dir)
-                    self.file_index.append(rel_path)
-                    try:
-                        with open(os.path.join(dirpath, filename), 'r', encoding='utf-8') as f:
-                            self.file_contents[rel_path] = f.read()
-                    except Exception:
-                        self.file_contents[rel_path] = ""
-
-    def get_relevant_preview(self, content, query, preview_len=80):
-        if not query or not content:
-            return content[:preview_len]
-        words = [re.escape(w) for w in query.strip().split() if w]
-        if not words:
-            return content[:preview_len]
-        pattern = re.compile(r'(' + '|'.join(words) + r')', re.IGNORECASE)
-        match = pattern.search(content)
-        if match:
-            start = max(match.start() - preview_len // 2, 0)
-            end = min(start + preview_len, len(content))
-            snippet = content[start:end]
-            if start > 0:
-                snippet = '...' + snippet
-            if end < len(content):
-                snippet = snippet + '...'
-            if snippet.strip('.') == '':
-                return content[:preview_len]
-            return snippet
-        else:
-            return content[:preview_len]
+        for name, full_path in pathmap.items():
+            try:
+                with open(full_path, 'r', encoding='utf-8') as f:
+                    self.file_contents[name] = f.read()
+            except Exception:
+                self.file_contents[name] = ""
 
     def search(self, query, limit=10):
         query = query.strip()
@@ -65,11 +37,12 @@ class FuzzySearch:
                         return results
         return results
 
-    def context_search(self, words, block_size=5, limit=20):
+    def context_search(self, search_query, block_size=5, limit=20):
         """
         Return non-overlapping blocks of block_size lines containing ALL words (case-insensitive),
         with highlights applied to the preview.
         """
+        words = [w for w in search_query.strip().split() if w]
         results = []
         word_patterns = [re.compile(re.escape(w), re.IGNORECASE) for w in words]
         for path, content in self.file_contents.items():
