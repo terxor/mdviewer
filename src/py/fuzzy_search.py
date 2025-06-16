@@ -2,8 +2,8 @@ import re
 import os
 
 class FuzzySearch:
-    def __init__(self, file_contents):
-        self.file_contents = file_contents
+    def __init__(self, node_map):
+        self._node_map = node_map
 
     def search(self, query, limit=10):
         query = query.strip()
@@ -36,7 +36,10 @@ class FuzzySearch:
         words = [w for w in search_query.strip().split() if w]
         results = []
         word_patterns = [re.compile(re.escape(w), re.IGNORECASE) for w in words]
-        for path, content in self.file_contents.items():
+        for node in self._node_map.values():
+            path = node.id
+            content = node.raw
+
             lines = content.splitlines()
             n = len(lines)
             i = 0

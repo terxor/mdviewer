@@ -3,12 +3,12 @@
 import os
 import argparse
 import json
-import logging
+from logger import get_logger
 from http.server import SimpleHTTPRequestHandler, HTTPServer
 from urllib.parse import unquote, urlparse, parse_qs
 from sv_state import MdViewerState
 
-logging.basicConfig(level=logging.INFO)
+logger = get_logger(__name__)
 
 class MdViewerServer(HTTPServer):
     """Custom HTTP server for Markdown Viewer."""
@@ -20,11 +20,22 @@ class MdViewerServer(HTTPServer):
 class MdViewerHandler(SimpleHTTPRequestHandler):
     """Request handler for Markdown Viewer."""
 
+    # suppress default logging
+    def log_message(self, format, *args):
+        pass  
+
+    # client disconnected early — just ignore it
+    def handle(self):
+        try:
+            super().handle()
+        except BrokenPipeError:
+            pass  
+
     def do_GET(self):
         parsed_url = urlparse(self.path)
         path = parsed_url.path
         query = parse_qs(parsed_url.query)
-        logging.debug(f"GET: {path}, query: {query}")
+        logger.debug(f"GET: {path}, query: {query}")
 
         if path.startswith("/static/"):
             return self._serve_static(path)
@@ -72,7 +83,7 @@ class MdViewerHandler(SimpleHTTPRequestHandler):
             else:
                 return self._send_html(content)
         except Exception as e:
-            logging.error(f"Error serving content '{name}': {e}")
+            logger.error(f"Error serving content '{name}': {e}")
             return self._send_error()
 
     def _send_response(self, content: bytes, content_type: str, code: int = 200):
@@ -83,7 +94,7 @@ class MdViewerHandler(SimpleHTTPRequestHandler):
         try:
             self.wfile.write(content)
         except BrokenPipeError:
-            logging.warning("Client disconnected before response could complete")
+            logger.warning("Client disconnected before response could complete")
 
     def _send_plaintext(self, content: str, code: int = 200):
         self._send_response(content.encode("utf-8"), "text/plain; charset=utf-8", code)
@@ -109,9 +120,10 @@ def main():
     args = parser.parse_args()
 
     config = {"dir": args.dir}
+    logger.info(f"Config: {config}")
+
     server = MdViewerServer((args.host, int(args.port)), MdViewerHandler, config)
-    logging.info(f"Config: {config}")
-    logging.info(f"Serving on http://{args.host}:{args.port}/")
+    logger.info(f"Serving on http://{args.host}:{args.port}/")
     server.serve_forever()
 
 if __name__ == '__main__':
