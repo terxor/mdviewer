@@ -266,6 +266,8 @@ const fetchContent = (fp, highlightWord, lineno, contextBlock) => {
         throwOnError: false
       });
 
+      scrollWrapElements()
+
       history.pushState({}, '', '/render/' + fp);
       document.title = fp;
       genCopyButtons();
@@ -445,6 +447,26 @@ function getCurrentFilePath() {
 window.addEventListener('scroll', () => {
   highlightCurrentTOCOnScroll();
 });
+
+function scrollWrapElements() {
+  const container = document.querySelector("#markdown-body");
+  if (!container) return;
+
+  // Generic wrapper function
+  function wrapElements(selector, wrapperClass) {
+    container.querySelectorAll(selector).forEach((el) => {
+      if (el.parentElement.classList.contains(wrapperClass)) return;
+
+      const wrapper = document.createElement("div");
+      wrapper.classList.add(wrapperClass);
+      el.parentNode.insertBefore(wrapper, el);
+      wrapper.appendChild(el);
+    });
+  }
+
+  wrapElements("table", "scrollable-wrapper");
+  wrapElements("img", "scrollable-wrapper");
+}
 
 // Initialize everything on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {

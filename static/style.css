@@ -173,6 +173,7 @@ body {
   color: rgb(76, 76, 76);
   line-height: 1.6;
   margin: 0 auto;
+  /* Subtle hover effect */
 }
 #markdown-body pre {
   background: #f8fafc;
@@ -205,24 +206,23 @@ body {
   max-width: 100%;
   width: auto;
   border-collapse: collapse;
-  margin: 1.5rem 0;
   font-size: 0.95rem;
-  background-color: #fff;
+  background-color: transparent;
 }
 #markdown-body th,
 #markdown-body td {
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+  border-bottom: 1px solid #dbd9d5;
   padding: 0.6rem 1rem;
   text-align: left;
   vertical-align: top;
 }
 #markdown-body th {
-  background-color: #FBF8FF;
+  white-space: nowrap;
   font-weight: 600;
-  color: #333;
 }
-#markdown-body tr:nth-child(even) {
-  background-color: #FDFCFF;
+#markdown-body tr:hover {
+  background-color: #f9f9f9; /* very light gray */
 }
 #markdown-body hr {
   border: none;
@@ -249,6 +249,11 @@ body {
 #markdown-body a:hover, #markdown-body a:focus {
   color: #485fc7;
   text-decoration: none;
+}
+
+.scrollable-wrapper {
+  overflow-x: auto;
+  max-width: 100%;
 }
 
 #search-bar {
