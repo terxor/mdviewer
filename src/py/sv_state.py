@@ -115,6 +115,14 @@ class MdViewerState:
         """
         Return the tree structure without file contents for API responses.
         """
+
+        # Key function fo sorting
+        def key_func(node):
+            name, type = node['name'], node['type']
+            if type == 'directory':
+                return (1, name)
+            return (0, name)
+
         tree = {}
         for node in self._node_map.values():
             parts = node.id.split(PATH_DELIMITER)
@@ -134,6 +142,7 @@ class MdViewerState:
             """Recursively convert children dicts to lists for API output."""
             if node['type'] == 'directory':
                 children_list = [dict_to_list(child) for child in node['children'].values()]
+                children_list.sort(key=key_func)
                 return {
                     'type': 'directory',
                     'name': node['name'],
@@ -149,5 +158,6 @@ class MdViewerState:
         list_tree = []
         for dir_node in tree.values():
             list_tree.append(dict_to_list(dir_node))
+        list_tree.sort(key=key_func)
         return list_tree
 

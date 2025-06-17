@@ -239,16 +239,16 @@ body {
   color: #2e4d2e;
 }
 #markdown-body a {
-  color: #1976d2;
+  color: #485fc7;
   text-decoration: none;
 }
 #markdown-body a:visited, #markdown-body a:active {
-  color: #1976d2;
+  color: #485fc7;
   text-decoration: none;
 }
 #markdown-body a:hover, #markdown-body a:focus {
   color: #485fc7;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .scrollable-wrapper {

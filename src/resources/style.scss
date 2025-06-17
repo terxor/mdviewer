@@ -102,8 +102,10 @@ $search-preview-file-color: #3572b0;
 $font-primary: 'Open Sans', sans-serif;
 $font-mono: 'JetBrains Mono', monospace;
 
-$link-color: #1976d2;
-$link-hover-color: #485fc7;
+// $link-color: #1976d2;
+// $link-hover-color: #485fc7;
+$link-color: #485fc7;
+$link-hover-color: #1976d2;
 
 
 html {
@@ -342,8 +344,9 @@ body {
 
     &:hover,
     &:focus {
-      color: $link-hover-color;
-      text-decoration: none;
+      // color: $link-hover-color;
+      color: $link-color;
+      text-decoration: underline;
     }
   }
 }

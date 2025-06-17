@@ -6,15 +6,17 @@ class MarkdownParser:
     @staticmethod
     def _strip_self_links(html: str) -> str:
         def replacer(match):
-            url = match.group(1)
-            # Remove http:// or https:// from the beginning
-            stripped_url = re.sub(r'^https?://', '', url)
-            return f'<a href="{url}">{stripped_url}</a>'
+            tag_start = match.group(1)
+            original = match.group(2)
+            tag_end = match.group(3)
+            modified = re.sub(r'^https?://', '', original)
+            return f'{tag_start}{modified}{tag_end}'
         
         return re.sub(
-            r'<a\s+href=["\'](https?://[^"\']+)["\']>\s*\1\s*</a>',
+            r'(<a[^>]*>)(.*?)(</a>)',
             replacer,
-            html
+            html,
+            flags=re.DOTALL | re.IGNORECASE
         )
     
     @staticmethod
