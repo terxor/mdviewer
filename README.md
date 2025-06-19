@@ -16,6 +16,13 @@ dev dependencies:
 
 - `sass`: `sudo npm install -g sass`
 
+extras:
+
+```
+npx prettier static/js/ --write
+```
+
+
 ## TODO
 
 - Fix tables: no wrapping and add horiz scroll
@@ -24,3 +31,7 @@ dev dependencies:
 
 - Fix TOC scroll (auto-scroll conflict) in large docs
   - Reproduce issue: click on last heading in large doc
+
+- Fix main scroll issue
+  - Reproduce issue: scroll to mid of some large page, switch to another large
+    page (it is auto scrolled)
