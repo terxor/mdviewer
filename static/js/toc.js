@@ -32,7 +32,13 @@ export function highlightCurrentHeading() {
     state.headingEntries[state.curHeadingIndex].classList.remove(treeClasses.active);
   }
   state.curHeadingIndex = result;
-  state.headingEntries[result].classList.add(treeClasses.active);
+  const target = state.headingEntries[result];
+  target.classList.add(treeClasses.active);
+  target.scrollIntoView({
+    behavior: 'auto',
+    block: 'nearest',
+    inline: 'nearest'
+  });
 }
 
 export function generateTOC(contentContainer, treeContainer) {
