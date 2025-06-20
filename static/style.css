@@ -148,6 +148,7 @@
 #markdown-body code {
   color: #e06c75;
   font-family: "JetBrains Mono", monospace;
+  font-variant-ligatures: none;
 }
 #markdown-body table {
   max-width: 100%;

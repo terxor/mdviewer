@@ -149,6 +149,7 @@ $blockquote-text-color: #2e4d2e;
   code {
     color: $inline-code-color;
     font-family: $font-mono;
+    font-variant-ligatures: none;
   }
 
   // Tables
