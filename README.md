@@ -2,7 +2,7 @@
 
 runtime dependencies:
 
-- `flask`
+- `bs4`
 - `markdown2`
 - `pygments`
 
@@ -35,3 +35,11 @@ npx prettier static/js/ --write
 - Fix main scroll issue
   - Reproduce issue: scroll to mid of some large page, switch to another large
     page (it is auto scrolled)
+
+New:
+
+- Heading bottom margin too less
+- list sub-list top margin too much
+- consistent lists (right now based on whether newline is present in raw text)
+
+

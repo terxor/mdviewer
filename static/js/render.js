@@ -13,23 +13,8 @@ export function renderMarkdown(container, html) {
     throwOnError: false,
   });
 
-  wrapElements(container, 'table', commonClasses.scrollableWrapper);
-  wrapElements(container, 'img', commonClasses.scrollableWrapper);
-
   // Make code blocks copy-able
   genCopyButtons(container);
-}
-
-// Utility: wrap elements of a particular class within a div created given classes
-function wrapElements(container, selector, wrapperClass) {
-  container.querySelectorAll(selector).forEach((el) => {
-    if (el.parentElement.classList.contains(wrapperClass)) return;
-
-    const wrapper = document.createElement('div');
-    wrapper.classList.add(wrapperClass);
-    el.parentNode.insertBefore(wrapper, el);
-    wrapper.appendChild(el);
-  });
 }
 
 // Post page load function
