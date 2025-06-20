@@ -37,7 +37,7 @@ export function highlightCurrentHeading() {
   target.scrollIntoView({
     behavior: 'auto',
     block: 'nearest',
-    inline: 'nearest'
+    inline: 'nearest',
   });
 }
 

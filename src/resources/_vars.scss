@@ -1,0 +1,47 @@
+// Fonts
+$font-primary: 'Open Sans', sans-serif;
+$font-mono: 'JetBrains Mono', monospace;
+
+// Layout
+$markdown-content-width: 1000px;
+$main-bg: #f0f2f5;
+
+// Markdown styling
+$markdown-bg: #fff;
+$markdown-shadow: rgba(0, 0, 0, 0.05);
+$markdown-hr: #ccc;
+
+$markdown-table-border: #dbd9d5;
+$markdown-table-header-bg: #fcf9f5;
+$markdown-table-row-bg: #fdfcfb;
+$markdown-table-header-color: #333;
+
+// Code blocks
+$code-bg: #f8fafc;
+$code-border: #9EC6F3;
+$code-highlight: #ccc;
+$code-copied-bg: #ECF4FD;
+$code-color: #3674b5;
+$inline-code-color: #8D0033;
+
+// Links
+$link-color: #485fc7;
+$link-hover-color: #1976d2;
+
+// Tree view
+$tree-entry-color: #6b7683;
+$tree-entry-hover-color: #1976d2;
+$tree-entry-highlight-bg: #e3f2fd;
+$tree-entry-highlight-color: #1976d2;
+$tree-indent-line-color: #e3e8ee;
+$tree-active-bg: #bbdefb;
+$tree-active-color: #1976d2;
+
+// Misc
+$highlight-bg: #fff59d;
+
+// Search overlay
+$search-hover-color: #1976d2;
+$search-overlay-bg: rgba(255, 255, 255, 0.9);
+$search-overlay-shadow: rgba(0, 0, 0, 0.1);
+$search-preview-file-color: #3572b0;
