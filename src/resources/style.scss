@@ -321,3 +321,10 @@ body {
 .hidden {
   display: none;
 }
+
+.muted-message {
+  color: #6c757d;         /* Muted grey (Bootstrap-like) */
+  text-align: center;     /* Center the text */
+  font-size: 0.95rem;     /* Slightly smaller text */
+  margin: 1rem 0;         /* Spacing above/below */
+}

@@ -47,6 +47,7 @@ class MarkdownParser:
         mdcontent = MarkdownParser._clean_math(mdcontent)
         html = markdown2.markdown(mdcontent, extras=[
             "fenced-code-blocks",
+            "header-ids",
             "code-friendly",
             "code-color",
             "tables",

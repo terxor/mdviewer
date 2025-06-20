@@ -57,6 +57,9 @@ export function generateTOC(contentContainer, treeContainer) {
       action: function (e) {
         e.preventDefault();
         h.scrollIntoView({ block: 'start' });
+        if (h.id && window.location.hash != h.id) {
+          window.location.hash = h.id;
+        }
         addTempHighlight(h);
       },
       collapsed: false,

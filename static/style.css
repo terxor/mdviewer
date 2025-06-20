@@ -198,8 +198,11 @@
   color: #485fc7;
 }
 #markdown-body a:hover, #markdown-body a:focus {
-  color: #485fc7;
-  text-decoration: underline;
+  color: #2F3E81;
+}
+#markdown-body a code {
+  color: inherit;
+  text-decoration: inherit;
 }
 
 *,
@@ -478,6 +481,13 @@ body {
 
 .hidden {
   display: none;
+}
+
+.muted-message {
+  color: #6c757d; /* Muted grey (Bootstrap-like) */
+  text-align: center; /* Center the text */
+  font-size: 0.95rem; /* Slightly smaller text */
+  margin: 1rem 0; /* Spacing above/below */
 }
 
 /*# sourceMappingURL=style.css.map */

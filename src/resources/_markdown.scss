@@ -215,8 +215,13 @@ $blockquote-text-color: #2e4d2e;
 
     &:hover,
     &:focus {
-      color: $link-color;
-      text-decoration: underline;
+      color: $link-hover-color;
+      // text-decoration: underline;
     }
+  }
+
+  a code {
+    color: inherit; // or $link-color, if you prefer explicit
+    text-decoration: inherit; // optional, to carry underline on hover
   }
 }

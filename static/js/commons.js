@@ -2,6 +2,7 @@ export const commonClasses = Object.freeze({
   scrollableWrapper: 'scrollable-wrapper',
   mdCodeCopiedHighlight: 'copied',
   tempHighlight: 'temp-highlight',
+  hidden: 'hidden',
 });
 
 export const treeClasses = Object.freeze({
@@ -58,7 +59,7 @@ export function renderTree(container, tree) {
   container.appendChild(ul);
 }
 
-export function addTempHighlight(el, duration = 4000, transitionMs = 1000) {
+export function addTempHighlight(el, duration = 1000, transitionMs = 500) {
   if (!el) return;
   el.classList.add(commonClasses.tempHighlight);
   // Ensure transition is set (in case CSS is missing/overridden)
