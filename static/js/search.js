@@ -62,7 +62,7 @@ async function searchContent(query, callback) {
     </div>`;
     li.style.cursor = 'pointer';
     li.onclick = () => {
-      callback(item.path, { query: query, context: item.preview }); // Pass context block!
+      callback(item.path, null, { query: query, context: item.preview }); // Pass context block!
       elems.resultsPanel.style.display = 'none';
       elems.input.value = '';
     };

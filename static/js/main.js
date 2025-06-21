@@ -37,7 +37,6 @@ function getCurrentFilePath() {
 // searchContext: {query: str, context: str} The search context to highlight
 // The last two args are mutually exclusive, specificTarget gets priority
 async function fetchContent(id = null, specificTarget = '', searchContext = null) {
-  console.log(`fetchContent: ${id}`);
   if (id == null) {
     // We don't care about specificTarget in this case
     let path = getCurrentFilePath();
@@ -45,7 +44,6 @@ async function fetchContent(id = null, specificTarget = '', searchContext = null
     specificTarget = path.hash
     searchContext = null;
   }
-  console.log(`fetchContent (resolved): ${id}`);
 
   let pageMessageContainer = document.getElementById(ids.pageMessage);
   let container = document.getElementById(ids.mdBody);
@@ -90,14 +88,13 @@ async function fetchContent(id = null, specificTarget = '', searchContext = null
 
   generateTOC(subContainer, document.getElementById(ids.tocTree));
 
-  if (specificTarget !== '') {
+  if (specificTarget) {
     let h = document.getElementById(specificTarget);
     if (h) {
       h.scrollIntoView({ block: 'start' });
       addTempHighlight(h);
     }
-  }
-  else if (searchContext) {
+  } else if (searchContext) {
     highlightWordInViewer(subContainer, searchContext.query, searchContext.context);
   }
 }

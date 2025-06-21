@@ -1,15 +1,12 @@
 # mdviewer - local server for markdown files
 
-runtime dependencies:
-
-- `bs4`
-- `markdown2`
-- `pygments`
-
 To regenerate syntax css:
 
 ```
 pygmentize -S default -f html > static/pygments.css
+
+# Preferred
+pygmentize -S xcode -f html > static/pygments.css
 ```
 
 dev dependencies:

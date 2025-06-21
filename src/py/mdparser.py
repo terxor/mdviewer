@@ -1,8 +1,46 @@
 import re
-import markdown2
-import bs4
+from markdown_it import MarkdownIt
 
 from bs4 import BeautifulSoup, Tag
+
+from markdown_it import MarkdownIt
+from markdown_it.token import Token
+from mdit_py_plugins.anchors import anchors_plugin
+from mdit_py_plugins.dollarmath import dollarmath_plugin
+
+from pygments import highlight
+from pygments.lexers import get_lexer_by_name
+from pygments.formatters import HtmlFormatter
+
+# Highlighting function
+def highlight_code(code, lang, attrs):
+    try:
+        lexer = get_lexer_by_name(lang)
+    except Exception:
+        lexer = get_lexer_by_name("text")
+    formatter = HtmlFormatter(nowrap=True)
+    return highlight(code, lexer, formatter)
+
+mdparser = MarkdownIt('commonmark', {"highlight": highlight_code}).enable('table').use(anchors_plugin, max_level=3).use(dollarmath_plugin, double_inline=True)
+
+# Custom plugin to add target="_blank" to all <a> tags
+def add_target_blank(md):
+    def link_open_with_target_blank(tokens, idx, options, env):
+        token = tokens[idx]
+
+        # Ensure token.attrs exists
+        if token.attrs is None:
+            token.attrs = []
+
+        # Add or overwrite 'target' attribute
+        token.attrSet('target', '_blank')
+
+        return md.renderer.renderToken(tokens, idx, options, env)
+
+    md.renderer.rules['link_open'] = link_open_with_target_blank
+
+# Apply the plugin
+add_target_blank(mdparser)
 
 def wrap_tables_and_images(dom):
     # Wrap tables
@@ -45,15 +83,7 @@ class MarkdownParser:
     @staticmethod
     def parse(mdcontent: str) -> str:
         mdcontent = MarkdownParser._clean_math(mdcontent)
-        html = markdown2.markdown(mdcontent, extras=[
-            "fenced-code-blocks",
-            "header-ids",
-            "code-friendly",
-            "code-color",
-            "tables",
-            "cuddled-lists",
-            "target-blank-links"
-        ])
+        html = mdparser.render(mdcontent)
         dom = BeautifulSoup(html, 'html.parser')
         wrap_tables_and_images(dom)
         simplify_anchor_text(dom)

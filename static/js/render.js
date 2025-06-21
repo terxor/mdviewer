@@ -1,17 +1,28 @@
 import { commonClasses } from './commons.js';
 
+function renderMath (container) {
+  const unescapeLatex = (text) => text.replace(/\\\\/g, '\\');
+
+  // Inline math
+  container.querySelectorAll(".math.inline").forEach(el => {
+    katex.render(unescapeLatex(el.textContent), el, {
+      throwOnError: false,
+      displayMode: false
+    });
+  });
+
+  // Block math
+  container.querySelectorAll(".math.block").forEach(el => {
+    katex.render(unescapeLatex(el.textContent), el, {
+      throwOnError: false,
+      displayMode: true
+    });
+  });
+}
+
 export function renderMarkdown(container, html) {
   container.innerHTML = html;
-
-  renderMathInElement(container, {
-    delimiters: [
-      { left: '$$', right: '$$', display: true },
-      { left: '\\[', right: '\\]', display: true },
-      { left: '$', right: '$', display: false },
-      { left: '\\(', right: '\\)', display: false },
-    ],
-    throwOnError: false,
-  });
+  renderMath(container);
 
   // Make code blocks copy-able
   genCopyButtons(container);

@@ -26,5 +26,19 @@ done
 # Change to the server base directory (for static files)
 cd "$(dirname "$(realpath "$0")")"
 
+VENV_DIR=".env"
+PYTHON=python3
+
+# Create virtualenv if not exists
+if [ ! -d "$VENV_DIR" ]; then
+  echo "[+] Creating virtual environment in $VENV_DIR"
+  $PYTHON -m venv "$VENV_DIR"
+  "$VENV_DIR/bin/pip" install --upgrade pip
+  "$VENV_DIR/bin/pip" install -r requirements.txt
+fi
+
+# Activate venv
+source "$VENV_DIR/bin/activate"
+
 # Run Python script with modified args
 python3 src/py/server.py "${new_args[@]}"
