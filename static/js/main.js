@@ -12,7 +12,7 @@ const ids = Object.freeze({
   pageMessage: 'page-message',
 });
 
-const welcomeMessage = "Select a file to view";
+const welcomeMessage = 'Select a file to view';
 
 // Utility: get current file path and hash from /render/URL
 // Returns an object like { id: 'docs/intro', hash: 'section2' }
@@ -27,7 +27,7 @@ function getCurrentFilePath() {
 
   return {
     id,
-    hash: hash ? hash.slice(1) : '' // remove leading #
+    hash: hash ? hash.slice(1) : '', // remove leading #
   };
 }
 
@@ -40,8 +40,8 @@ async function fetchContent(id = null, specificTarget = '', searchContext = null
   if (id == null) {
     // We don't care about specificTarget in this case
     let path = getCurrentFilePath();
-    id = path.id
-    specificTarget = path.hash
+    id = path.id;
+    specificTarget = path.hash;
     searchContext = null;
   }
 
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   setupSearch(fetchContent);
 
   // Listen for browser navigation (back/forward)
-  window.addEventListener('popstate', (event) => {
+  window.addEventListener('popstate', () => {
     if (location.hash) {
       // It's a hash-only navigation — skip handling
       return;
