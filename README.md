@@ -24,4 +24,6 @@ npx prettier static/js/ --write
 
 - Fix search of terms with special symbols like 'vector<int>'
 
+- Make file links to be able to open in new tabs
+- Reload button (maybe)
 
