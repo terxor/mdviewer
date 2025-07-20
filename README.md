@@ -27,3 +27,4 @@ npx prettier static/js/ --write
 - Make file links to be able to open in new tabs
 - Reload button (maybe)
 
+- Bug: splitlines on None in fuzzysearch (L=43)
