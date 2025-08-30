@@ -57,10 +57,18 @@ export async function loadDirTree(container, callback) {
         return {
           name: item.name,
           action: function (e) {
+            // Let browser handle certain cases, useful for opening in new tab
+            if (e.ctrlKey || e.metaKey || e.button === 1) {
+              return;
+            }
+
+            // Otherwise, intercept and load dynamically
+            e.preventDefault();
             callback(item.path);
             e.stopPropagation();
           },
           collapsed: false, // Files are not collapsible
+          href: '/render/' + item.path,
           metadata: {
             id: item.path,
           },

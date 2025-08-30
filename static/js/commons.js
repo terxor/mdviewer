@@ -19,6 +19,7 @@ function renderTreeRecursive(tree, parentNode, depth = 0) {
        - name: Display name
        - metadata: some internal value the item signifies (could be object)
        - action: the on-click function
+       - href: useful in some cases
        - children: optionally, children of the element
        - collapsed: whether to start collapsed
        - render: optional function to trigger on the entry upon rendering
@@ -35,6 +36,13 @@ function renderTreeRecursive(tree, parentNode, depth = 0) {
     entry.textContent = item.name;
     entry.style.setProperty('--tree-depth', depth);
     entry.addEventListener('click', item.action);
+
+    // For tooltip
+    entry.title = item.name;
+
+    if (item.href) {
+      entry.href = item.href;
+    }
 
     li.appendChild(entry);
     if (item.render) {

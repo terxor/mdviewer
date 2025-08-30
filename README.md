@@ -19,6 +19,12 @@ extras:
 npx prettier static/js/ --write
 ```
 
+In case you don't wish to download whole `node/npm` thing, you can
+get standalone binary:
+
+```
+curl -fsSL -o sass.tar.gz https://github.com/sass/dart-sass/releases/download/1.91.0/dart-sass-1.91.0-linux-x64.tar.gz
+```
 
 ## TODO
 

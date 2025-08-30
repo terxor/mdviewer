@@ -55,6 +55,12 @@ export function generateTOC(contentContainer, treeContainer) {
       name: h.textContent,
       children: [],
       action: function (e) {
+        // Let browser handle certain cases, useful for opening in new tab
+        if (e.ctrlKey || e.metaKey || e.button === 1) {
+          return;
+        }
+
+        // Otherwise, intercept and load dynamically
         e.preventDefault();
         h.scrollIntoView({ block: 'start' });
         if (h.id && window.location.hash != h.id) {
@@ -62,6 +68,7 @@ export function generateTOC(contentContainer, treeContainer) {
         }
         addTempHighlight(h);
       },
+      href: `${window.location.pathname}#${h.id}`,
       collapsed: false,
       metadata: {
         index: idx,

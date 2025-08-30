@@ -3,7 +3,7 @@
 // Typography variables
 $line-height: 1.5;
 $text-font-size: 1rem;
-$text-font-color: rgb(76, 76, 76);
+$text-font-color: rgb(20, 20, 20);
 $default-bottom-margin: 20px;
 
 $list-padding: 28px;
@@ -11,10 +11,10 @@ $list-indent: 30px;
 $list-item-gap: 10px;
 
 // Headings
-$h1-size: 2rem;
-$h2-size: 1.5rem;
-$h3-size: 1.25rem;
-$h4-size: $text-font-size;
+$h1-size: $text-font-size * 2.00;
+$h2-size: $text-font-size * 1.50;
+$h3-size: $text-font-size * 1.25;
+$h4-size: $text-font-size * 1.00;
 
 $heading-top-margin: $default-bottom-margin + 10;
 $heading-line-height: 1.3;
