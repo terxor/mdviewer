@@ -59,7 +59,7 @@
   margin: 0 auto;
   padding: 28px;
   box-sizing: border-box;
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Noto Sans", "Roboto", sans-serif;
   font-size: 1rem;
   color: rgb(20, 20, 20);
   line-height: 1.5;
@@ -82,21 +82,21 @@
 }
 #markdown-body h1 {
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 600;
 }
 #markdown-body h2 {
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: 600;
 }
 #markdown-body h3 {
   font-size: 1.25rem;
-  font-weight: 800;
+  font-weight: 600;
 }
 #markdown-body h4,
 #markdown-body h5,
 #markdown-body h6 {
   font-size: 1rem;
-  font-weight: 800;
+  font-weight: 600;
 }
 #markdown-body ul, #markdown-body ol {
   padding-left: 28px;
@@ -217,7 +217,7 @@
 body {
   display: flex;
   flex-direction: row;
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Noto Sans", "Roboto", sans-serif;
   font-size: 14px;
   background-color: #f0f2f5;
   margin: 0;
