@@ -57,14 +57,14 @@
 #markdown-body {
   width: 100%;
   margin: 0 auto;
-  padding: 28px;
+  padding: 20px;
   box-sizing: border-box;
   font-family: "Noto Sans", "Roboto", sans-serif;
   font-size: 1rem;
   color: rgb(20, 20, 20);
   line-height: 1.5;
   background: #fff;
-  box-shadow: rgba(10, 10, 10, 0.1) 0 8px 16px -2px, rgba(10, 10, 10, 0.02) 0 0 0 1px;
+  box-shadow: rgba(10, 10, 10, 0.1) 0 2px 4px -1px, rgba(10, 10, 10, 0.02) 0 0 0 1px;
 }
 #markdown-body pre,
 #markdown-body p,
@@ -179,7 +179,7 @@
 }
 #markdown-body blockquote {
   display: block;
-  padding: 20px 16px;
+  padding: 12px;
   background: #f6fdf6;
   border-left: 3px solid #4caf50;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -243,7 +243,7 @@ body {
   min-width: 0;
   background: #f0f2f5;
   overflow: hidden;
-  padding: 1rem;
+  padding: 1.5rem 1rem 1rem 1rem;
 }
 .layout3col-sidebar:first-child {
   align-items: flex-start;
@@ -266,6 +266,7 @@ body {
   min-width: 0;
   max-width: 100vw;
   background: transparent;
+  padding-top: 1.5rem;
 }
 
 .layout3col-sidebar * {
@@ -282,7 +283,7 @@ body {
   gap: 0.7em;
   position: sticky;
   background: #f0f2f5;
-  padding: 1em 0;
+  padding-bottom: 1em;
   border-bottom: 1px solid #e3e8ee;
   flex-shrink: 0;
 }
@@ -297,9 +298,8 @@ body {
 }
 
 .content {
-  padding-top: 2rem;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
   width: 100%;
 }
 
