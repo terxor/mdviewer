@@ -37,6 +37,11 @@ function getCurrentFilePath() {
 // searchContext: {query: str, context: str} The search context to highlight
 // The last two args are mutually exclusive, specificTarget gets priority
 async function fetchContent(id = null, specificTarget = '', searchContext = null) {
+
+  // close the left side bar if open
+  // TODO: Find right place for this function call
+  closeLeft();
+
   if (id == null) {
     // We don't care about specificTarget in this case
     let path = getCurrentFilePath();
@@ -100,6 +105,7 @@ async function fetchContent(id = null, specificTarget = '', searchContext = null
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+
   await loadDirTree(document.getElementById(ids.dirTree), fetchContent);
   fetchContent();
   setupSearch(fetchContent);
@@ -118,3 +124,21 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Listen for scroll to highlight current TOC entry
   window.addEventListener('scroll', highlightCurrentHeading);
 });
+
+function toggleLeft() {
+  const sidebar = document.getElementById("sidebar");
+  const overlay = document.getElementById("overlay");
+  sidebar.classList.toggle("open");
+  overlay.classList.toggle("active");
+}
+
+function closeLeft() {
+  const sidebar = document.getElementById("sidebar");
+  const overlay = document.getElementById("overlay");
+  sidebar.classList.remove("open");
+  overlay.classList.remove("active");
+}
+
+document.getElementById("sidebar-toggle-btn").addEventListener('click', toggleLeft);
+document.getElementById("overlay").addEventListener('click', toggleLeft);
+

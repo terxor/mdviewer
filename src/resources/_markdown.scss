@@ -33,6 +33,7 @@ $blockquote-text-color: #2e4d2e;
 // Markdown container
 #markdown-body {
   width: 100%;
+  max-width: 950px;
   margin: 0 auto;
   padding: 20px;
   box-sizing: border-box;
@@ -43,7 +44,9 @@ $blockquote-text-color: #2e4d2e;
   line-height: $line-height;
 
   background: $markdown-bg;
-  box-shadow: rgba(10, 10, 10, 0.1) 0 2px 4px -1px, rgba(10, 10, 10, 0.02) 0 0 0 1px;
+  border: solid 2px rgba(10, 10, 10, 0.1);
+  border-radius: 8px;
+  // box-shadow: rgba(10, 10, 10, 0.1) 0 2px 4px -1px, rgba(10, 10, 10, 0.02) 0 0 0 1px;
 
   // Spacing for common blocks
   pre,
@@ -60,7 +63,7 @@ $blockquote-text-color: #2e4d2e;
   // Headings
   h1, h2, h3, h4, h5, h6 {
     line-height: $heading-line-height;
-    margin-top: $heading-top-margin;
+    // margin-top: $heading-top-margin;
   }
 
   h1 {
