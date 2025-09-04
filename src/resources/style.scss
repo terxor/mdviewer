@@ -18,7 +18,7 @@ body {
 
   font-family: $font-primary;
   font-size: $font-primary-size;
-  // background-color: $main-bg;
+  background-color: $main-bg;
 
   height: 100%;
   // overflow: hidden;
@@ -29,7 +29,7 @@ body {
 
 .container {
   display: grid;
-  grid-template-columns: auto 1fr 300px;
+  grid-template-columns: auto 1fr 350px;
   min-height: 100vh;
 
   .section-left, .section-right, .section-main {
@@ -44,8 +44,9 @@ body {
     height: 100vh;
   }
 
-  // .section-main {
-  // }
+  .section-main {
+    padding-top: 3rem;
+  }
 
   .section-left {
     // background-color: red;
@@ -199,7 +200,6 @@ body {
   position: sticky;
   // background: $main-bg;
   padding-bottom: 1em;
-  border-bottom: 1px solid #e3e8ee;
   flex-shrink: 0;
 }
 
@@ -222,7 +222,7 @@ body {
 }
 
 .scroll-spacer {
-  height: 90vh;
+  height: 50vh;
   background: transparent;
   pointer-events: none;
 }

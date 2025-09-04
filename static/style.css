@@ -58,14 +58,14 @@
   width: 100%;
   max-width: 950px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 2rem;
   box-sizing: border-box;
   font-family: "Noto Sans", "Roboto", sans-serif;
   font-size: 1rem;
   color: rgb(20, 20, 20);
   line-height: 1.5;
   background: #fff;
-  border: solid 2px rgba(10, 10, 10, 0.1);
+  border: solid 1px rgb(189, 193, 198);
   border-radius: 8px;
 }
 #markdown-body pre,
@@ -165,10 +165,11 @@
   text-align: left;
   vertical-align: top;
   padding: 0.6rem 1rem;
-  border-bottom: 1px solid #dbd9d5;
+  border: 1px solid #dbd9d5;
 }
 #markdown-body th {
   font-weight: 600;
+  background-color: #f6f8fa;
 }
 #markdown-body tr:hover {
   background-color: #f9f9f9;
@@ -218,12 +219,13 @@
 body {
   font-family: "Noto Sans", "Roboto", sans-serif;
   font-size: 14px;
+  background-color: #f0f8ff;
   height: 100%;
 }
 
 .container {
   display: grid;
-  grid-template-columns: auto 1fr 300px;
+  grid-template-columns: auto 1fr 350px;
   min-height: 100vh;
 }
 .container .section-left, .container .section-right, .container .section-main {
@@ -234,6 +236,9 @@ body {
   top: 0;
   overflow-y: auto;
   height: 100vh;
+}
+.container .section-main {
+  padding-top: 3rem;
 }
 #sidebar-toggle-btn {
   border: none;
@@ -317,7 +322,7 @@ body {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  background: #f0f2f5;
+  background: #f0f8ff;
   overflow: hidden;
   padding: 1.5rem 1rem 1rem 1rem;
 }
@@ -359,7 +364,6 @@ body {
   gap: 0.7em;
   position: sticky;
   padding-bottom: 1em;
-  border-bottom: 1px solid #e3e8ee;
   flex-shrink: 0;
 }
 
@@ -379,7 +383,7 @@ body {
 }
 
 .scroll-spacer {
-  height: 90vh;
+  height: 50vh;
   background: transparent;
   pointer-events: none;
 }

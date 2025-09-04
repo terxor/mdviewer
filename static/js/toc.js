@@ -42,6 +42,11 @@ export function highlightCurrentHeading() {
 }
 
 export function generateTOC(contentContainer, treeContainer) {
+  let topLevelHeading = contentContainer.querySelector('h1');
+  if (topLevelHeading) {
+    document.title = topLevelHeading.textContent;
+  }
+
   state.headings = contentContainer.querySelectorAll('h1, h2, h3, h4, h5, h6');
   state.curHeadingIndex = null;
   state.headingEntries = new Array(state.headings.length);
