@@ -98,6 +98,7 @@ body {
   transition: left 0.1s;
   z-index: 1000;
   padding: 20px;
+  overflow-y: scroll;
 }
 
 .sidebar-left.open {
