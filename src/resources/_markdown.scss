@@ -38,6 +38,8 @@ $blockquote-text-color: #2e4d2e;
   padding: 2rem;
   box-sizing: border-box;
 
+  overflow-wrap: break-word;
+
   font-family: $font-primary;
   font-size: $text-font-size;
   color: $text-font-color;

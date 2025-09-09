@@ -28,9 +28,12 @@ curl -fsSL -o sass.tar.gz https://github.com/sass/dart-sass/releases/download/1.
 
 ## TODO
 
+- Fix scroll in dir tree (on focus)
+
 - Fix search of terms with special symbols like 'vector<int>'
 
 - Make file links to be able to open in new tabs
 - Reload button (maybe)
 
 - Bug: splitlines on None in fuzzysearch (L=43)
+
