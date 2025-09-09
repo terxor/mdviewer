@@ -35,13 +35,13 @@ body {
   .section-left, .section-right, .section-main {
     // overflow-y: auto;
     padding: 1rem;
-  }
-
-  .section-left, .section-right {
     position: sticky;
     top: 0;
     overflow-y: auto;
     height: 100vh;
+  }
+
+  .section-left, .section-right {
   }
 
   .section-main {

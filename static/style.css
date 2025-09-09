@@ -230,8 +230,6 @@ body {
 }
 .container .section-left, .container .section-right, .container .section-main {
   padding: 1rem;
-}
-.container .section-left, .container .section-right {
   position: sticky;
   top: 0;
   overflow-y: auto;

@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   // Listen for scroll to highlight current TOC entry
-  window.addEventListener('scroll', highlightCurrentHeading);
+  document.getElementById('section-main').addEventListener('scroll', highlightCurrentHeading);
 });
 
 function toggleLeft() {

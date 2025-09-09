@@ -13,7 +13,9 @@ export function highlightCurrentHeading() {
   }
 
   const threshold = 20; // Extra buffer
-  const scrollPos = (window.scrollY || window.pageYOffset) + threshold;
+
+  const container = document.getElementById('section-main');
+  const scrollPos = container.scrollTop + threshold;
 
   let low = 0,
     high = state.headings.length - 1,
