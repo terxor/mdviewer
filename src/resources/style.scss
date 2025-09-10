@@ -29,7 +29,7 @@ body {
 
 .container {
   display: grid;
-  grid-template-columns: auto 1fr 350px;
+  grid-template-columns: 50px 1fr 350px;
   min-height: 100vh;
 
   .section-left, .section-right, .section-main {
@@ -70,6 +70,22 @@ body {
   padding: 8px 12px;
   cursor: pointer;
   // z-index: 1100;
+}
+
+#sidebar-left-toggle-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: #F5FAFF;
+  transition: background 0.2s;
+  margin-right: 20px;
+  color: #aaaaaa;
+  font-size: 2rem;
+
+  &:hover {
+    background: #f0f8ff;
+  }
 }
 
 // --------------------------------------------------------------------------------

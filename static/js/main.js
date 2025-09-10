@@ -125,11 +125,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('section-main').addEventListener('scroll', highlightCurrentHeading);
 });
 
-function toggleLeft() {
+function openLeft() {
   const sidebar = document.getElementById("sidebar");
   const overlay = document.getElementById("overlay");
-  sidebar.classList.toggle("open");
-  overlay.classList.toggle("active");
+  sidebar.classList.add("open");
+  overlay.classList.add("active");
 }
 
 function closeLeft() {
@@ -139,6 +139,8 @@ function closeLeft() {
   overlay.classList.remove("active");
 }
 
-document.getElementById("sidebar-toggle-btn").addEventListener('click', toggleLeft);
-document.getElementById("overlay").addEventListener('click', toggleLeft);
+const sidebarToggler = document.getElementById("sidebar-left-toggle-area");
+const overlay = document.getElementById("overlay");
 
+sidebarToggler.addEventListener('click', openLeft);
+overlay.addEventListener('click', closeLeft);

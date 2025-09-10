@@ -219,13 +219,13 @@
 body {
   font-family: "Noto Sans", "Roboto", sans-serif;
   font-size: 14px;
-  background-color: #f0f8ff;
+  background-color: #ffffff;
   height: 100%;
 }
 
 .container {
   display: grid;
-  grid-template-columns: auto 1fr 350px;
+  grid-template-columns: 50px 1fr 350px;
   min-height: 100vh;
 }
 .container .section-left, .container .section-right, .container .section-main {
@@ -243,6 +243,21 @@ body {
   border-radius: 5px;
   padding: 8px 12px;
   cursor: pointer;
+}
+
+#sidebar-left-toggle-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: #F5FAFF;
+  transition: background 0.2s;
+  margin-right: 20px;
+  color: #aaaaaa;
+  font-size: 2rem;
+}
+#sidebar-left-toggle-area:hover {
+  background: #f0f8ff;
 }
 
 .container-left {
@@ -321,7 +336,7 @@ body {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  background: #f0f8ff;
+  background: #ffffff;
   overflow: hidden;
   padding: 1.5rem 1rem 1rem 1rem;
 }
