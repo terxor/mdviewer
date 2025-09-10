@@ -86,7 +86,7 @@ async function fetchContent(id = null, specificTarget = '', searchContext = null
     container.removeChild(container.firstElementChild);
   }
   container.firstElementChild.classList.remove(commonClasses.hidden);
-  window.scrollTo(0, 0);
+  document.getElementById('section-main').scrollTo(0, 0);
 
   const url = `/render/${id}${specificTarget ? `#${specificTarget}` : ''}`;
   history.pushState({}, '', url);
